@@ -10,266 +10,336 @@
     *{margin:0;padding:0;box-sizing:border-box}
     html{scroll-behavior:smooth}
     :root{--cyan:#38bdf8;--purple:#a855f7;--pink:#ec4899;--green:#22c55e;--red:#ef4444}
-    body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(ellipse at 50% -12%,#31205c 0%,#11101d 32%,#070810 72%);color:#fff;overflow-x:hidden;position:relative;min-height:100vh}
-    body::before,body::after{content:"";position:fixed;width:600px;height:600px;filter:blur(180px);pointer-events:none;z-index:-2}
-    body::before{background:#6d28d9;opacity:.18;top:-150px;left:-150px}
-    body::after{background:#0891b2;opacity:.15;bottom:-150px;right:-150px}
+    body{font-family:Arial,Helvetica,sans-serif;background:radial-gradient(ellipse at 50% 0%,#171027 0%,transparent 45%),#050507;color:#fff;overflow-x:hidden;position:relative;min-height:100vh}
+    body::before,body::after{content:"";position:fixed;width:500px;height:500px;filter:blur(180px);pointer-events:none;z-index:-2}
+    body::before{background:#7c3aed;opacity:.15;top:-150px;left:-150px}
+    body::after{background:#06b6d4;opacity:.12;bottom:-150px;right:-150px}
     ::selection{background:#a855f775;color:#fff}
-    
-    /* Background Sky & Weather */
-    .sky{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;opacity:.55}
-    .cloud{position:absolute;background:linear-gradient(135deg,#382451,#17142b);border-radius:120px;opacity:.42;filter:blur(3px);box-shadow:0 0 45px #7c3aed3d;will-change:transform}
+    .sky{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+    .cloud{position:absolute;background:linear-gradient(135deg,#382451,#17142b);border-radius:120px;opacity:.72;filter:blur(1.5px);box-shadow:0 0 45px #7c3aed3d,inset 0 -12px 30px #0004;will-change:transform}
     .cloud::before,.cloud::after{content:"";position:absolute;background:linear-gradient(135deg,#382451,#21152f);border-radius:50%}
     .cloud1{width:380px;height:95px;top:4%;left:-5%;animation:float1 18s ease-in-out infinite}.cloud1::before{width:160px;height:160px;top:-80px;left:40px}.cloud1::after{width:130px;height:130px;top:-55px;left:190px}
     .cloud2{width:450px;height:110px;top:14%;left:25%;animation:float2 22s ease-in-out infinite}.cloud2::before{width:180px;height:180px;top:-90px;left:50px}.cloud2::after{width:150px;height:150px;top:-65px;left:220px}
     .cloud3{width:320px;height:85px;top:7%;left:65%;animation:float3 17s ease-in-out infinite}.cloud3::before{width:140px;height:140px;top:-70px;left:35px}.cloud3::after{width:110px;height:110px;top:-50px;left:160px}
+    .cloud4{width:400px;height:100px;top:26%;left:5%;animation:float4 24s ease-in-out infinite}.cloud4::before{width:170px;height:170px;top:-85px;left:45px}.cloud4::after{width:140px;height:140px;top:-60px;left:200px}
+    .cloud5{width:300px;height:80px;top:20%;left:70%;animation:float5 20s ease-in-out infinite}.cloud5::before{width:130px;height:130px;top:-65px;left:30px}.cloud5::after{width:100px;height:100px;top:-45px;left:150px}
     @keyframes float1{0%,100%{transform:translate(0,0)}50%{transform:translate(80px,-12px)}}
     @keyframes float2{0%,100%{transform:translate(0,0)}50%{transform:translate(-90px,10px)}}
     @keyframes float3{0%,100%{transform:translate(0,0)}50%{transform:translate(65px,10px)}}
-    .lightning{position:absolute;width:3px;background:linear-gradient(to bottom,#fff,#c4b5fd,transparent);opacity:0;filter:drop-shadow(0 0 8px #fff) drop-shadow(0 0 20px #a855f7);z-index:3}
-    .bolt1{top:12%;left:15%;height:40%;transform:rotate(8deg);animation:lightning 9s infinite}.bolt2{top:22%;left:42%;height:45%;transform:rotate(-11deg);animation:lightning 12s infinite 3s}
+    @keyframes float4{0%,100%{transform:translate(0,0)}50%{transform:translate(-70px,-6px)}}
+    @keyframes float5{0%,100%{transform:translate(0,0)}50%{transform:translate(75px,12px)}}
+    .lightning{position:absolute;width:3px;background:linear-gradient(to bottom,#fff,#c4b5fd,transparent);opacity:0;filter:drop-shadow(0 0 8px #fff) drop-shadow(0 0 20px #a855f7) drop-shadow(0 0 35px #38bdf8);z-index:3;border-radius:1px}
+    .bolt1{top:12%;left:15%;height:40%;transform:rotate(8deg);animation:lightning 9s infinite}.bolt2{top:22%;left:42%;height:45%;transform:rotate(-11deg);animation:lightning 12s infinite 3s}.bolt3{top:14%;left:75%;height:38%;transform:rotate(6deg);animation:lightning 10s infinite 6s}
+    .lightning::before,.lightning::after{content:"";position:absolute;width:2px;background:inherit;filter:inherit}
+    .bolt1::before{height:32%;top:25%;left:-14px;transform:rotate(-28deg)}.bolt1::after{height:26%;top:45%;left:15px;transform:rotate(30deg)}
+    .bolt2::before{height:30%;top:20%;left:-16px;transform:rotate(-34deg)}.bolt2::after{height:36%;top:35%;left:17px;transform:rotate(22deg)}
+    .bolt3::before{height:28%;top:28%;left:-12px;transform:rotate(-24deg)}
     @keyframes lightning{0%,88%,100%{opacity:0}89%{opacity:.2}90%{opacity:1}91%{opacity:.1}92%{opacity:.8}94%{opacity:0}}
-    .flash{position:fixed;inset:0;background:rgba(200,180,255,.2);opacity:0;pointer-events:none;z-index:5;animation:flash 9s infinite}
-    @keyframes flash{0%,88%,100%{opacity:0}90%{opacity:.18}91%{opacity:.03}92%{opacity:.1}94%{opacity:0}}
+    .flash{position:fixed;inset:0;background:rgba(200,180,255,.32);opacity:0;pointer-events:none;z-index:5;animation:flash 9s infinite}
+    .flash.delay1{animation-delay:3s}.flash.delay2{animation-delay:6s}
+    @keyframes flash{0%,88%,100%{opacity:0}90%{opacity:.22}91%{opacity:.03}92%{opacity:.13}94%{opacity:0}}
+    nav{position:sticky;top:0;z-index:1000;width:100%;display:flex;justify-content:space-between;align-items:center;padding:18px 7%;background:rgba(7,7,12,.72);backdrop-filter:blur(24px) saturate(150%);-webkit-backdrop-filter:blur(24px) saturate(150%);border-bottom:1px solid #ffffff14}
+    .logo{font-size:22px;font-weight:bold;letter-spacing:1.5px;background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    nav a{color:#aaa;text-decoration:none;margin-left:25px;font-size:14px;position:relative;transition:color .25s}
+    nav a::after{content:"";position:absolute;left:0;bottom:-7px;width:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--purple));transition:width .3s}
+    nav a:hover{color:#fff}nav a:hover::after{width:100%}
+    .hero{min-height:72vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 20px 50px;position:relative;z-index:1}
+    .badge{display:inline-block;padding:8px 16px;border:1px solid #a855f759;border-radius:30px;color:#c4b5fd;font-size:13px;margin-bottom:25px;background:#a855f714;backdrop-filter:blur(12px);animation:badgeFloat 4s ease-in-out infinite}
+    @keyframes badgeFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+    .hero h1{font-size:clamp(45px,8vw,95px);line-height:1;max-width:1000px;font-weight:800;background:linear-gradient(100deg,#67e8f9,#a78bfa 45%,#f0abfc 75%,#67e8f9);background-size:250% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:25px;filter:drop-shadow(0 0 32px #a855f71f);animation:gradientFlow 8s linear infinite}
+    @keyframes gradientFlow{to{background-position:250% center}}
+    .hero p{max-width:650px;color:#aaa;font-size:18px;line-height:1.7;margin-bottom:35px}
+    .hero-buttons{display:flex;gap:15px;flex-wrap:wrap;justify-content:center}
+    .hero-btn{padding:14px 25px;border-radius:30px;text-decoration:none;font-weight:bold;transition:transform .3s,box-shadow .3s;display:inline-block}
+    .primary-btn{background:linear-gradient(110deg,#fff,#dbeafe);color:#000;box-shadow:0 0 25px #38bdf81f}
+    .secondary-btn{border:1px solid #444;color:#fff;background:#111}
+    .hero-btn:hover{transform:translateY(-3px)}.primary-btn:hover{box-shadow:0 8px 35px #38bdf840}.secondary-btn:hover{border-color:var(--purple);box-shadow:0 8px 30px #a855f726}
+    .system-status{display:flex;justify-content:center;align-items:center;gap:10px;margin:20px auto 30px;color:#aaa;font-size:14px;position:relative;z-index:1}
+    .status-dot{width:10px;height:10px;border-radius:50%;background:#777}.status-dot.online{background:var(--green);animation:onlinePulse 2s ease-in-out infinite}.status-dot.offline{background:var(--red);animation:offlinePulse 2s ease-in-out infinite}
+    @keyframes onlinePulse{0%,100%{box-shadow:0 0 5px #22c55e}50%{box-shadow:0 0 17px #22c55e,0 0 30px #22c55e2e}}
+    @keyframes offlinePulse{0%,100%{box-shadow:0 0 4px #ef4444}50%{box-shadow:0 0 13px #ef44448c}}
+    .dashboard{max-width:1150px;margin:auto;padding:30px 20px 100px;position:relative;z-index:1}
+    .section-title{text-align:center;margin-bottom:40px}.section-title h2{font-size:38px;margin-bottom:10px}.section-title p{color:#888}
+    .connection-box,.device{background:linear-gradient(145deg,rgba(25,25,38,.82),rgba(9,9,15,.91));border:1px solid #ffffff17;box-shadow:0 15px 45px #0003;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+    .connection-box{border-radius:22px;padding:30px;margin-bottom:30px;transition:border-color .3s,box-shadow .3s}.connection-box:hover{border-color:#38bdf838}
+    .connection-header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}.connection-header h3{font-size:22px}.connection-label{color:#777;font-size:13px;margin-bottom:8px}.connection-message{margin-top:15px;color:#aaa;font-size:13px;line-height:1.5}
+    .ip-section{margin-top:25px;padding-top:20px;border-top:1px solid #333}.ip-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    #espIP{flex:1;min-width:200px;padding:13px 16px;border-radius:10px;border:1px solid #333;background:#080808;color:white;font-size:15px;outline:none;transition:border-color .25s,box-shadow .25s}
+    #espIP:focus{border-color:var(--purple);box-shadow:0 0 0 4px #a855f71a}
+    .ip-btn{padding:13px 20px;border-radius:10px;border:1px solid #444;background:#151515;color:white;font-weight:bold;cursor:pointer;transition:.25s}.ip-btn:hover{border-color:var(--purple);background:#202020;transform:translateY(-2px)}
+    .save-btn{background:linear-gradient(110deg,#fff,#dbeafe);color:#000;border-color:#fff}.save-btn:hover{background:#ddd}
+    #currentIP{color:#a78bfa;font-size:14px}
+    .device-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+    .device{position:relative;isolation:isolate;border-radius:22px;padding:30px;min-height:230px;overflow:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .35s,box-shadow .35s}
+    .device::before{content:"";position:absolute;z-index:-1;width:200px;height:200px;background:radial-gradient(circle,var(--purple),transparent 70%);filter:blur(45px);opacity:0;right:-50px;top:-50px;transition:opacity .35s}
+    .device:hover{transform:translateY(-7px) scale(1.008);border-color:#a855f76b;box-shadow:0 20px 55px #0006,0 0 25px #a855f712}.device:hover::before{opacity:.25}
+    .device-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}
+    .device-icon{width:55px;height:55px;display:flex;justify-content:center;align-items:center;border-radius:15px;font-size:28px;background:linear-gradient(145deg,#242035,#11111a);border:1px solid #a855f72e;transition:transform .35s,box-shadow .35s}
+    .device:hover .device-icon{transform:translateY(-3px) rotate(-5deg);box-shadow:0 8px 25px #a855f726}
+    .device-status{font-size:12px;padding:6px 12px;border-radius:20px;background:#151515;color:#777;border:1px solid #333;transition:all .3s}
+    .device-status.on{color:#4ade80;border-color:#22c55e8c;background:#22c55e17;box-shadow:0 0 18px #22c55e14}
+    .device h3{font-size:24px;margin-bottom:8px}.device-description{color:#888;font-size:14px;margin-bottom:25px}
+    .controls{display:flex;gap:10px}.control-btn{flex:1;padding:13px;border-radius:10px;border:1px solid #333;font-size:15px;font-weight:bold;cursor:pointer;transition:transform .2s,box-shadow .25s,background .25s}
+    .control-btn:hover{transform:translateY(-2px)}.control-btn:active,.ip-btn:active,.hero-btn:active,.total-off:active{transform:scale(.97)}
+    .on-btn{background:linear-gradient(120deg,#15803d,#16a34a);color:white;border-color:#16a34a}.on-btn:hover{box-shadow:0 0 24px #22c55e38;background:#22c55e}
+    .off-btn{background:#1a1a1a;color:#aaa}.off-btn:hover{background:#dc2626;color:white;border-color:#dc2626;box-shadow:0 0 24px #ef444429}
+    .power-off{grid-column:1/-1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px;background:radial-gradient(ellipse at top,#ef44441a,transparent 65%),linear-gradient(145deg,#1a0b10,#0a080c);border:1px solid #ef444433;border-radius:22px;transition:border-color .3s,box-shadow .3s}
+    .power-off:hover{border-color:#ef444466;box-shadow:0 15px 40px #ef44440f}.power-icon{font-size:45px;color:#f87171;margin-bottom:10px;text-shadow:0 0 25px #ef444440;animation:powerPulse 3s ease-in-out infinite}
+    @keyframes powerPulse{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.06);opacity:1}}
+    .power-off h2{margin-bottom:15px}.total-off{padding:14px 35px;border:none;border-radius:30px;background:linear-gradient(110deg,#b91c1c,#ef4444);color:white;font-size:15px;font-weight:bold;cursor:pointer;transition:transform .25s,box-shadow .25s}
+    .total-off:hover{box-shadow:0 0 28px #ef444440;transform:translateY(-2px)}.power-off p{margin-top:15px;color:#888}#systemState{color:var(--green);font-weight:bold}
+    .features{margin-top:100px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .feature{padding:30px;border:1px solid #ffffff14;border-radius:18px;background:linear-gradient(145deg,#161620cc,#08080de6);text-align:center;transition:transform .3s,border-color .3s,box-shadow .3s}
+    .feature:hover{transform:translateY(-6px);border-color:#38bdf847;box-shadow:0 15px 35px #38bdf80d}.feature-icon{font-size:35px;margin-bottom:15px;display:inline-block;transition:transform .3s}.feature:hover .feature-icon{transform:scale(1.12) rotate(-5deg)}
+    .feature h3{margin-bottom:10px}.feature p{color:#888;font-size:14px;line-height:1.6}
+    footer{border-top:1px solid #ffffff14;padding:35px 20px;text-align:center;color:#666;font-size:13px;position:relative;z-index:1;line-height:1.5}footer strong{color:#aaa}
+    button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--cyan);outline-offset:4px}
+    @keyframes revealUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+    .section-title,.connection-box,.device,.feature{animation:revealUp .65s ease both}
+    .device:nth-child(2){animation-delay:.08s}.device:nth-child(3){animation-delay:.16s}.device:nth-child(4){animation-delay:.24s}.feature:nth-child(2){animation-delay:.08s}.feature:nth-child(3){animation-delay:.16s}
+    @media(max-width:700px){
+      nav{padding:16px 20px}nav .links{display:none}.hero{min-height:65vh;padding:65px 20px 35px}.hero h1{font-size:clamp(38px,10vw,55px);line-height:1.08}.hero p{font-size:15px}
+      .device-grid{grid-template-columns:1fr}.power-off{grid-column:auto}.features{grid-template-columns:1fr;margin-top:65px;gap:15px}.section-title h2{font-size:30px}
+      .ip-row{flex-direction:column}#espIP,.ip-btn{width:100%}.connection-box,.device{padding:22px;border-radius:18px}.device:hover,.feature:hover{transform:translateY(-3px)}.cloud{opacity:.42}.lightning{filter:drop-shadow(0 0 8px #fff)}
+    }
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
 
-    /* Split-Screen Login */
+    /* Secure sign-in screen */
     [hidden]{display:none!important}
-    .login-screen{position:relative;z-index:20;min-height:100vh;padding:clamp(20px,4vw,58px);display:grid;place-items:center;background:radial-gradient(ellipse at 15% 18%,#263b7a45,transparent 38%),radial-gradient(ellipse at 85% 78%,#7c3aed36,transparent 40%),#070913}
+    .login-screen{position:relative;z-index:20;min-height:100vh;display:grid;place-items:center;padding:28px 16px;background:radial-gradient(ellipse at 20% 20%,#7c3aed24,transparent 40%),radial-gradient(ellipse at 80% 80%,#06b6d424,transparent 40%)}
+    .login-card{width:min(100%,440px);padding:38px;border:1px solid #ffffff20;border-radius:28px;background:linear-gradient(145deg,#171521ed,#090910f2);box-shadow:0 28px 100px #0009,0 0 45px #a855f714;backdrop-filter:blur(22px);animation:revealUp .6s ease both}
+    .login-brand{display:flex;align-items:center;gap:13px;margin-bottom:28px}
+    .login-mark{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;font-size:25px;background:linear-gradient(135deg,#38bdf833,#a855f744);border:1px solid #a855f75c;box-shadow:0 0 28px #a855f71c}
+    .login-brand strong{display:block;letter-spacing:1.4px;font-size:15px}.login-brand span{display:block;color:#888;font-size:12px;margin-top:5px}
+    .login-card h1{font-size:30px;letter-spacing:-.8px;margin-bottom:10px}.login-subtitle{color:#999;font-size:14px;line-height:1.6;margin-bottom:26px}
+    .login-label{display:block;font-size:12px;color:#c4c4d0;margin:17px 0 8px}
+    .login-input{width:100%;padding:14px 15px;border:1px solid #353342;border-radius:12px;background:#08080e;color:#fff;font-size:15px;outline:none;transition:border-color .2s,box-shadow .2s}
+    .login-input:focus{border-color:#a855f7;box-shadow:0 0 0 4px #a855f71a}
+    .login-submit{width:100%;margin-top:22px;padding:14px;border:0;border-radius:12px;background:linear-gradient(100deg,#38bdf8,#8b5cf6 65%,#c026d3);color:white;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 8px 28px #8b5cf633;transition:transform .2s,filter .2s}
+    .login-submit:hover{transform:translateY(-2px);filter:brightness(1.1)}.login-submit:disabled{opacity:.6;cursor:wait;transform:none}
+    .login-switch{text-align:center;color:#999;font-size:13px;margin-top:20px}.login-switch button{border:0;background:none;color:#c4b5fd;font-weight:bold;cursor:pointer;padding:4px}
+    .login-message{font-size:12px;line-height:1.5;color:#fca5a5;min-height:18px;margin-top:13px}.login-message.ok{color:#86efac}
+    .login-note{font-size:11px;line-height:1.5;color:#777;border-top:1px solid #ffffff12;margin-top:23px;padding-top:16px}
+    .logout-btn{border:1px solid #ffffff20;background:#17151f;color:#ddd;padding:8px 12px;border-radius:9px;cursor:pointer;font-size:12px}
+    @media(max-width:480px){.login-card{padding:27px 22px;border-radius:22px}.login-card h1{font-size:26px}}
+
+
+    /* Premium visual refresh */
+    :root{--cyan:#67e8f9;--purple:#a78bfa;--pink:#f0abfc;--green:#4ade80;--red:#fb7185;--panel:rgba(13,15,28,.78)}
+    body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(ellipse at 50% -12%,#31205c 0%,#11101d 32%,#070810 72%);letter-spacing:.01em}
+    body::before{width:620px;height:620px;opacity:.2;background:#6d28d9;filter:blur(190px)}
+    body::after{width:560px;height:560px;opacity:.16;background:#0891b2;filter:blur(180px)}
+    .sky{opacity:.55}.cloud{opacity:.42;filter:blur(3px)}.flash{mix-blend-mode:screen}
+    nav{padding:17px clamp(20px,6vw,88px);background:rgba(7,8,17,.78);border-bottom:1px solid rgba(167,139,250,.18);box-shadow:0 10px 35px #0002}
+    .logo{font-size:19px;letter-spacing:2px}
+    nav .links{display:flex;align-items:center;gap:clamp(12px,2vw,26px)}
+    nav a{margin-left:0;font-weight:600;font-size:13px;color:#c1c2d3}
+    .logout-btn{border-color:#a78bfa50;background:#a78bfa12;color:#e5ddff;padding:9px 14px;transition:.2s}
+    .logout-btn:hover{background:#a78bfa24;border-color:#a78bfa}
+    .hero{min-height:68vh;padding-top:90px;padding-bottom:60px}
+    .badge{padding:9px 17px;border-color:#67e8f94a;background:linear-gradient(90deg,#67e8f910,#a78bfa18);color:#d9d3ff;letter-spacing:.08em;font-size:11px;font-weight:700}
+    .hero h1{letter-spacing:-.055em;line-height:.98;text-wrap:balance;filter:drop-shadow(0 0 42px #a78bfa22)}
+    .hero p{color:#b2b3c6;max-width:620px;font-size:16px}
+    .hero-btn{padding:14px 23px;border-radius:13px;font-size:13px;letter-spacing:.02em}
+    .primary-btn{background:linear-gradient(115deg,#dffaff,#c4b5fd);box-shadow:0 8px 32px #67e8f91a}
+    .secondary-btn{background:#ffffff06;border-color:#ffffff25;color:#e2e4f5}
+    .system-status{display:table;padding:10px 17px;border:1px solid #ffffff15;border-radius:30px;background:#0b0c17c9;color:#c1c5d8;box-shadow:0 8px 30px #0002}
+    .dashboard{max-width:1180px;padding-top:36px}
+    .section-title{margin-bottom:34px}.section-title h2{font-size:clamp(28px,4vw,38px);letter-spacing:-.04em}.section-title p{font-size:14px;color:#9b9db3}
+    .connection-box,.device,.feature{background:linear-gradient(145deg,rgba(21,23,42,.88),rgba(9,9,10,.9));border-color:#ffffff18;box-shadow:0 18px 55px #0003, inset 0 1px #ffffff08}
+    .connection-box{border-radius:25px;padding:clamp(22px,3vw,34px)}
+    .connection-header h3{letter-spacing:-.02em}.connection-label{color:#a2a4bb;font-size:12px;letter-spacing:.025em}
+    #espIP,.login-input{background:rgba(4,6,15,.78);border-color:#ffffff20;border-radius:13px}
+    #espIP{padding:14px 16px}.ip-btn{border-radius:12px;padding:14px 20px;background:#ffffff08;border-color:#ffffff20}
+    .save-btn{background:linear-gradient(110deg,#dffaff,#c4b5fd);border-color:transparent;color:#10111c}
+    .device-grid{gap:18px}
+    .device{border-radius:24px;padding:clamp(22px,3vw,30px);min-height:245px}
+    .device-icon{border-radius:17px;background:linear-gradient(145deg,#232440,#111321);border-color:#a78bfa45}
+    .device h3{font-size:23px;letter-spacing:-.03em}.device-description{color:#a2a4bb}
+    .device-status{background:#ffffff08;border-color:#ffffff1d;color:#a2a4bb}
+    .control-btn{border-radius:12px;padding:13px;border-color:#ffffff1b}
+    .on-btn{background:linear-gradient(120deg,#15803d,#16a34a);box-shadow:inset 0 1px #ffffff24}
+    .off-btn{background:#ffffff08;color:#c4c6d7}.off-btn:hover{background:#be123c}
+    .power-off{border-radius:24px;background:radial-gradient(ellipse at 50% 0%,#fb71851c,transparent 68%),linear-gradient(145deg,#1b101b,#0c0b14);border-color:#fb718536;padding:30px}
+    .total-off{border-radius:13px;background:linear-gradient(110deg,#be123c,#f43f5e);padding:14px 28px}
+    .features{margin-top:82px;gap:18px}.feature{border-radius:22px;padding:29px 25px;text-align:left}
+    .feature-icon{width:54px;height:54px;display:grid;place-items:center;border-radius:16px;background:linear-gradient(145deg,#67e8f91b,#a78bfa20);border:1px solid #a78bfa25;font-size:27px}
+    .feature h3{font-size:17px;letter-spacing:-.02em}.feature p{color:#a2a4bb}
+    footer{margin-top:12px;background:#06070d77;border-top-color:#ffffff12;color:#85879d}
+    .login-screen{overflow:hidden;background:radial-gradient(ellipse at 12% 20%,#7c3aed30,transparent 42%),radial-gradient(ellipse at 90% 85%,#06b6d424,transparent 40%),rgba(5,6,13,.28)}
+    .login-screen::before{content:"";position:absolute;width:min(70vw,560px);height:min(70vw,560px);border:1px solid #a78bfa14;border-radius:50%;box-shadow:0 0 0 55px #a78bfa06,0 0 0 110px #67e8f905;pointer-events:none}
+    .login-card{position:relative;width:min(100%,460px);padding:clamp(28px,5vw,42px);border:1px solid #ffffff20;border-radius:30px;background:linear-gradient(145deg,rgba(22,22,39,.94),rgba(8,9,17,.97));box-shadow:0 35px 110px #0009,0 0 80px #8b5cf710,inset 0 1px #ffffff0b}
+    .login-mark{background:linear-gradient(135deg,#67e8f923,#a855f744);border-color:#a78bfa70;box-shadow:0 0 35px #a855f724}
+    .login-brand strong{letter-spacing:2px}.login-brand span{letter-spacing:1.5px;font-size:10px;color:#9da0b8}
+    .login-card h1{font-size:clamp(28px,5vw,34px);letter-spacing:-1.2px}.login-subtitle{color:#aeb0c4}
+    .login-label{font-size:12px;font-weight:650;color:#d3d4e4}
+    .login-input{padding:15px 16px;font-size:14px}.login-input::placeholder{color:#70738a}
+    .login-submit{border-radius:13px;padding:15px;background:linear-gradient(105deg,#38bdf8,#8b5cf6 62%,#c026d3);box-shadow:0 12px 32px #8b5cf629;font-size:14px;letter-spacing:.015em}
+    .login-note{color:#85879d;border-top-color:#ffffff14}
+    @media(max-width:700px){nav .links{display:flex;gap:10px}nav .links a{display:none}.hero{min-height:60vh;padding-top:65px}.hero h1{line-height:1.04}.connection-header{align-items:flex-start}.features{margin-top:60px}.feature{text-align:left}}
+    @media(max-width:420px){nav{padding:14px 16px}.logo{font-size:16px}.logout-btn{padding:8px 10px}.login-card{padding:25px 21px}.system-status{font-size:12px}}
+
+
+    /* Premium visual system: split-screen access portal + graphic-rich dashboard */
+    .login-screen{min-height:100vh;padding:clamp(20px,4vw,58px);display:grid;place-items:center;background:radial-gradient(ellipse at 15% 18%,#263b7a45,transparent 38%),radial-gradient(ellipse at 85% 78%,#7c3aed36,transparent 40%),#070913}
+    .login-screen::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.13;background-image:linear-gradient(#ffffff0a 1px,transparent 1px),linear-gradient(90deg,#ffffff0a 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(to bottom,black,transparent 85%)}
     .login-layout{width:min(1240px,100%);min-height:min(760px,calc(100vh - 56px));display:grid;grid-template-columns:minmax(0,1.08fr) minmax(360px,.82fr);align-items:stretch;position:relative;z-index:2;border:1px solid #ffffff16;border-radius:34px;overflow:hidden;background:#0a0c16d9;box-shadow:0 45px 130px #0009,0 0 100px #4f46e51a;backdrop-filter:blur(20px)}
     .login-visual{position:relative;overflow:hidden;min-height:650px;padding:clamp(30px,5vw,60px);display:flex;flex-direction:column;justify-content:space-between;background:radial-gradient(ellipse at 55% 57%,#304b9252,transparent 42%),linear-gradient(145deg,#101c36 0%,#101426 50%,#151025 100%);border-right:1px solid #ffffff12}
-    .visual-orbit{position:absolute;border:1px solid #8be9ff15;border-radius:50%;pointer-events:none}
-    .orbit-one{width:580px;height:580px;left:5%;top:15%;box-shadow:0 0 0 40px #8be9ff04,0 0 0 80px #8be9ff03}
-    .orbit-two{width:420px;height:420px;left:17%;top:26%;border-style:dashed;animation:orbitSpin 55s linear infinite}
+    .login-visual::before{content:"";position:absolute;width:420px;height:420px;left:18%;top:24%;border-radius:50%;background:#4f46e51c;filter:blur(50px);pointer-events:none}
+    .visual-orbit{position:absolute;border:1px solid #8be9ff15;border-radius:50%;pointer-events:none}.orbit-one{width:580px;height:580px;left:5%;top:15%;box-shadow:0 0 0 40px #8be9ff04,0 0 0 80px #8be9ff03}.orbit-two{width:420px;height:420px;left:17%;top:26%;border-style:dashed;animation:orbitSpin 55s linear infinite}
     @keyframes orbitSpin{to{transform:rotate(360deg)}}
-    .visual-topline{position:relative;z-index:1;display:flex;align-items:center;gap:10px;color:#b7c5e7;font-size:10px;font-weight:800;letter-spacing:2.2px}
-    .visual-live-dot{width:7px;height:7px;background:#4ade80;border-radius:50%;box-shadow:0 0 13px #4ade80}
-    .visual-copy{position:relative;z-index:1;margin-top:40px}
-    .visual-eyebrow{display:block;color:#8be9ff;font-size:10px;font-weight:800;letter-spacing:3px;margin-bottom:15px}
-    .visual-copy h2{font-size:clamp(36px,4.5vw,60px);letter-spacing:-2.5px;line-height:1.05;font-weight:750}
-    .visual-copy h2 em{font-style:normal;background:linear-gradient(90deg,#8be9ff,#a78bfa 70%,#f0abfc);-webkit-background-clip:text;background-clip:text;color:transparent}
-    .visual-copy p{max-width:410px;color:#a7b2ce;line-height:1.7;font-size:14px;margin-top:15px}
-    
-    /* Illustrated House */
-    .house-scene{position:relative;z-index:1;min-height:280px;display:flex;align-items:center;justify-content:center}
-    .house-svg{width:min(100%,500px);height:auto;filter:drop-shadow(0 20px 38px #03061588);animation:houseFloat 7s ease-in-out infinite}
+    .visual-topline{position:relative;z-index:1;display:flex;align-items:center;gap:10px;color:#b7c5e7;font-size:10px;font-weight:800;letter-spacing:2.2px}.visual-live-dot{width:7px;height:7px;background:#4ade80;border-radius:50%;box-shadow:0 0 13px #4ade80;animation:onlinePulse 2s infinite}
+    .visual-copy{position:relative;z-index:1;margin-top:44px}.visual-eyebrow{display:block;color:#8be9ff;font-size:10px;font-weight:800;letter-spacing:3px;margin-bottom:19px}.visual-copy h2{font-size:clamp(38px,4.5vw,64px);letter-spacing:-3px;line-height:1.03;font-weight:760}.visual-copy h2 em{font-style:normal;background:linear-gradient(90deg,#8be9ff,#a78bfa 70%,#f0abfc);-webkit-background-clip:text;background-clip:text;color:transparent}.visual-copy p{max-width:410px;color:#a7b2ce;line-height:1.8;font-size:14px;margin-top:20px}
+    .house-scene{position:relative;z-index:1;min-height:285px;display:flex;align-items:center;justify-content:center;margin:-8px -18px -8px}.house-svg{width:min(100%,520px);height:auto;overflow:visible;filter:drop-shadow(0 20px 38px #03061588);animation:houseFloat 7s ease-in-out infinite}.scene-glow{position:absolute;width:54%;height:25%;left:23%;bottom:13%;border-radius:50%;background:#5b8dff35;filter:blur(38px)}
     @keyframes houseFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-    .floating-chip{position:absolute;z-index:2;display:flex;align-items:center;gap:10px;padding:11px 14px;border:1px solid #ffffff20;border-radius:15px;background:#111a30d9;box-shadow:0 12px 36px #0004;backdrop-filter:blur(16px)}
-    .floating-chip b,.floating-chip small{display:block}.floating-chip b{font-size:11px;color:#eef3ff}.floating-chip small{font-size:9px;color:#8795b7;margin-top:3px}
-    .chip-icon{width:32px;height:32px;display:grid;place-items:center;border-radius:10px;background:#67e8f91c;color:#8be9ff;font-size:20px}
-    .chip-temp{left:2%;top:22%}.chip-cloud{right:1%;bottom:20%}.chip-cloud .chip-icon{background:#a78bfa1d;color:#c4b5fd}
-    .visual-foot{position:relative;z-index:1;display:flex;justify-content:space-between;color:#687897;font-size:9px;letter-spacing:1.7px;font-weight:700}
-    
-    /* Login Form Card */
-    .login-card{align-self:center;justify-self:center;width:100%;max-width:500px;padding:clamp(28px,4vw,56px);background:transparent}
-    .login-brand{display:flex;align-items:center;gap:13px;margin-bottom:30px}
-    .login-mark{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;font-size:24px;background:linear-gradient(135deg,#38bdf833,#a855f744);border:1px solid #a855f75c}
-    .login-brand strong{display:block;letter-spacing:1.5px;font-size:14px}.login-brand span{display:block;color:#888;font-size:10px;margin-top:4px}
-    .login-welcome-tag{display:flex;align-items:center;gap:8px;color:#8f9bb9;font-size:9px;letter-spacing:2px;font-weight:800;margin-bottom:15px}
-    .login-welcome-tag span{width:6px;height:6px;background:#a78bfa;border-radius:50%;box-shadow:0 0 10px #a78bfa}
-    .login-card h1{font-size:clamp(30px,3.4vw,42px);letter-spacing:-1.5px;line-height:1.1;margin-bottom:10px}
-    .title-period{color:#8be9ff}.login-subtitle{font-size:13px;line-height:1.7;color:#939bb5;margin-bottom:28px}
-    .login-label{display:block;margin:18px 0 8px;color:#dce4f7;font-size:11px;font-weight:600}
-    .input-shell{position:relative;display:flex;align-items:center}
-    .input-symbol{position:absolute;left:15px;z-index:1;color:#8b9abb;font-size:16px}
-    .login-input{width:100%;padding:15px 15px 15px 43px;border:1px solid #ffffff17;background:linear-gradient(110deg,#0b1020,#0b0d17);border-radius:13px;font-size:13px;color:#fff;outline:none}
-    .login-input:focus{border-color:#7dd3fc;box-shadow:0 0 0 4px #38bdf814}
-    .login-submit{width:100%;display:flex;justify-content:center;align-items:center;gap:12px;margin-top:25px;padding:16px;border:0;border-radius:13px;background:linear-gradient(110deg,#3b82f6,#7c3aed 65%,#a855f7);color:white;font-weight:bold;font-size:14px;cursor:pointer;box-shadow:0 12px 30px #6d28d92e}
-    .login-security{display:flex;align-items:center;gap:11px;margin-top:25px;padding:14px;border:1px solid #ffffff10;border-radius:13px;background:#ffffff04}
-    .security-shield{width:26px;height:26px;display:grid;place-items:center;border-radius:8px;color:#86efac;background:#22c55e17;font-size:12px}
-    .login-security b,.login-security small{display:block}.login-security b{font-size:10px;color:#d5deef}.login-security small{font-size:9px;color:#7e8aa5;margin-top:3px}
-    .login-message{font-size:12px;color:#fca5a5;min-height:18px;margin-top:12px}
-
-    /* Main Dashboard Layout */
-    nav{position:sticky;top:0;z-index:1000;width:100%;display:flex;justify-content:space-between;align-items:center;padding:17px clamp(20px,6vw,88px);background:rgba(7,8,17,.78);border-bottom:1px solid rgba(167,139,250,.18);backdrop-filter:blur(24px)}
-    .logo{font-size:19px;letter-spacing:2px;font-weight:bold;background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-    .logout-btn{border:1px solid #a78bfa50;background:#a78bfa12;color:#e5ddff;padding:8px 14px;border-radius:9px;cursor:pointer;font-size:12px}
-    .hero{min-height:55vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:70px 20px 30px;position:relative;z-index:1}
-    .badge{display:inline-block;padding:9px 17px;border:1px solid #67e8f94a;border-radius:30px;background:linear-gradient(90deg,#67e8f910,#a78bfa18);color:#d9d3ff;font-size:11px;font-weight:700;letter-spacing:.08em;margin-bottom:20px}
-    .hero h1{font-size:clamp(38px,6.5vw,75px);letter-spacing:-.05em;line-height:1;font-weight:800;background:linear-gradient(100deg,#67e8f9,#a78bfa 45%,#f0abfc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:20px}
-    .hero p{max-width:620px;color:#b2b3c6;font-size:16px;line-height:1.6;margin-bottom:25px}
-    .system-status{display:table;padding:10px 17px;border:1px solid #ffffff15;border-radius:30px;background:#0b0c17c9;color:#c1c5d8;font-size:13px;margin:auto}
-    .status-dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#777;margin-right:8px}.status-dot.online{background:var(--green);box-shadow:0 0 12px #22c55e}.status-dot.offline{background:var(--red);box-shadow:0 0 10px #ef4444}
-    
-    .dashboard{max-width:1180px;margin:auto;padding:30px 20px 100px;position:relative;z-index:1}
-    .section-title{text-align:center;margin-bottom:34px}.section-title h2{font-size:36px;letter-spacing:-1.5px;margin-bottom:8px}.section-title p{color:#9da4bd;font-size:14px}
-
-    /* 🔥 Auto Heat Alert */
-    .heat-alert{display:none;padding:16px 20px;border-radius:18px;background:linear-gradient(90deg,#b91c1c,#ef4444);color:white;text-align:center;font-weight:bold;font-size:15px;box-shadow:0 0 35px #ef444488;margin-bottom:25px;animation:alertPulse 1.5s infinite}
-    @keyframes alertPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.02)}}
-
-    /* Overview Cards (Lighting, Climate, Network) */
-    .overview-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;margin:0 0 25px}
-    .overview-card{position:relative;overflow:hidden;padding:24px;border:1px solid #ffffff14;border-radius:21px;background:linear-gradient(145deg,#151a2ad9,#0a0d17f2);box-shadow:0 18px 45px #0002;transition:.3s}
-    .overview-card:hover{transform:translateY(-4px);border-color:#8b9cfb4a}
-    .overview-top{display:flex;align-items:center;gap:10px;margin-bottom:18px}
-    .overview-icon{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:#ffffff09;border:1px solid #ffffff13;font-size:19px;color:#a5eaff}
-    .overview-label{font-size:9px;font-weight:800;letter-spacing:1.8px;color:#929bb5}
-    .overview-mini{margin-left:auto;padding:5px 8px;border-radius:7px;background:#ffffff08;color:#858eaa;font-size:9px;font-weight:bold}
-    .overview-mini.alert{background:#ef444426;color:#f87171;border:1px solid #ef44444d}
-    .overview-card>strong{display:block;font-size:clamp(22px,2.4vw,29px);letter-spacing:-.8px;color:#eef3ff}
-    .overview-card>strong span{font-size:14px;font-weight:normal;color:#8b95b0}
-    .overview-card>p{margin-top:6px;color:#828ca7;font-size:11px}
-    .overview-wave{display:flex;align-items:center;gap:4px;height:13px;margin-top:14px}
-    .overview-wave i{display:block;width:5px;border-radius:5px;background:linear-gradient(#a78bfa,#6366f1);height:35%;animation:waveBar 1.1s ease-in-out infinite alternate}
-    .overview-wave i:nth-child(2n){height:85%}.overview-wave i:nth-child(3n){height:55%}
-    @keyframes waveBar{to{transform:scaleY(.35);opacity:.5}}
-    .network-visual{display:flex;align-items:end;gap:4px;height:13px;margin-top:14px}
-    .network-visual span{flex:1;height:50%;border-radius:3px;background:linear-gradient(#67e8f9,#6366f1);opacity:.75}
-
-    .connection-box,.device{background:linear-gradient(145deg,rgba(21,23,42,.88),rgba(9,10,19,.9));border:1px solid #ffffff18;box-shadow:0 18px 55px #0003;backdrop-filter:blur(16px);border-radius:24px;padding:clamp(22px,3vw,30px);margin-bottom:22px}
-    .connection-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-    .device-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
-    .device-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
-    .device-icon{width:50px;height:50px;display:grid;place-items:center;border-radius:15px;background:linear-gradient(145deg,#232440,#111321);border:1px solid #a78bfa45;font-size:24px}
-    .device-status{font-size:12px;padding:6px 12px;border-radius:20px;background:#ffffff08;color:#a2a4bb;border:1px solid #ffffff1d}
-    .device-status.on{color:#4ade80;border-color:#22c55e8c;background:#22c55e17;box-shadow:0 0 16px #22c55e14}
-    .device-status.auto{color:#f59e0b;border-color:#f59e0b8c;background:#f59e0b17;box-shadow:0 0 16px #f59e0b24}
-    .controls{display:flex;gap:10px;margin-top:20px}
-    .control-btn{flex:1;padding:13px;border-radius:12px;border:1px solid #ffffff1b;font-size:15px;font-weight:bold;cursor:pointer;transition:.2s}
-    .on-btn{background:linear-gradient(120deg,#15803d,#16a34a);color:white}.off-btn{background:#ffffff08;color:#c4c6d7}
-    .power-off{grid-column:1/-1;text-align:center;padding:28px;background:radial-gradient(ellipse at 50% 0%,#fb71851c,transparent 68%),linear-gradient(145deg,#1b101b,#0c0b14);border:1px solid #fb718536;border-radius:24px}
-    .total-off{padding:14px 35px;border:none;border-radius:13px;background:linear-gradient(110deg,#be123c,#f43f5e);color:white;font-weight:bold;cursor:pointer}
-    @media(max-width:900px){.login-layout{grid-template-columns:1fr}.house-scene{display:none}.login-visual{min-height:280px}.overview-grid,.device-grid{grid-template-columns:1fr}}
+    .floating-chip{position:absolute;z-index:2;display:flex;align-items:center;gap:10px;padding:11px 14px;border:1px solid #ffffff20;border-radius:15px;background:#111a30d9;box-shadow:0 12px 36px #0004;backdrop-filter:blur(16px);animation:chipFloat 5s ease-in-out infinite}.floating-chip b,.floating-chip small{display:block}.floating-chip b{font-size:11px;color:#eef3ff}.floating-chip small{font-size:9px;color:#8795b7;margin-top:4px}.chip-icon{width:31px;height:31px;display:grid;place-items:center;border-radius:10px;background:#67e8f91c;color:#8be9ff;font-size:20px}.floating-chip i{width:6px;height:6px;background:#4ade80;border-radius:50%;margin-left:5px;box-shadow:0 0 10px #4ade80}.chip-temp{left:2%;top:22%}.chip-cloud{right:1%;bottom:20%;animation-delay:-2.5s}.chip-cloud .chip-icon{background:#a78bfa1d;color:#c4b5fd}
+    @keyframes chipFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+    .visual-foot{position:relative;z-index:1;display:flex;justify-content:space-between;gap:15px;color:#687897;font-size:9px;letter-spacing:1.7px;font-weight:700}
+    .login-card{align-self:center;justify-self:center;width:100%;max-width:500px;padding:clamp(28px,4vw,56px);border:0;border-radius:0;background:transparent;box-shadow:none;backdrop-filter:none;animation:revealUp .7s ease both}
+    .login-brand{margin-bottom:36px}.login-mark{width:48px;height:48px;border-radius:15px;font-size:25px}.login-brand strong{font-size:14px}.login-brand span{font-size:9px;letter-spacing:1.8px}
+    .login-welcome-tag{display:flex;align-items:center;gap:8px;color:#8f9bb9;font-size:9px;letter-spacing:2px;font-weight:800;margin-bottom:17px}.login-welcome-tag span{width:6px;height:6px;background:#a78bfa;border-radius:50%;box-shadow:0 0 12px #a78bfa}
+    .login-card h1{font-size:clamp(32px,3.4vw,43px);letter-spacing:-1.8px;line-height:1.12;margin-bottom:12px}.title-period{color:#8be9ff}.login-subtitle{font-size:13px;line-height:1.8;color:#939bb5;margin-bottom:32px;max-width:340px}
+    .login-label{margin:19px 0 9px;color:#dce4f7;font-size:11px;letter-spacing:.3px}.input-shell{position:relative;display:flex;align-items:center}.input-symbol{position:absolute;left:15px;z-index:1;color:#8b9abb;font-size:16px;pointer-events:none}.login-input{padding:15px 15px 15px 43px;border:1px solid #ffffff17;background:linear-gradient(110deg,#0b1020,#0b0d17);border-radius:13px;font-size:13px}.login-input:focus{border-color:#7dd3fc;box-shadow:0 0 0 4px #38bdf814,0 0 25px #38bdf80c}.password-hint{position:absolute;right:15px;color:#687897;letter-spacing:3px;font-size:11px;pointer-events:none}
+    .login-submit{display:flex;justify-content:center;align-items:center;gap:12px;position:relative;overflow:hidden;margin-top:27px;padding:16px;border-radius:13px;background:linear-gradient(110deg,#3b82f6,#7c3aed 65%,#a855f7);box-shadow:0 12px 30px #6d28d92e, inset 0 1px #ffffff30;letter-spacing:.2px}.login-submit::before{content:"";position:absolute;top:0;left:-120%;width:70%;height:100%;transform:skewX(-20deg);background:linear-gradient(90deg,transparent,#ffffff35,transparent);transition:left .7s}.login-submit:hover::before{left:150%}.submit-arrow{font-size:19px;transition:transform .2s}.login-submit:hover .submit-arrow{transform:translate(3px,-2px)}
+    .login-security{display:flex;align-items:center;gap:11px;margin-top:29px;padding:14px;border:1px solid #ffffff10;border-radius:13px;background:#ffffff04}.security-shield{width:27px;height:27px;display:grid;place-items:center;border-radius:9px;color:#86efac;background:#22c55e17;border:1px solid #22c55e2c;font-size:13px}.login-security b,.login-security small{display:block}.login-security b{font-size:10px;color:#d5deef}.login-security small{font-size:9px;color:#7e8aa5;margin-top:4px;line-height:1.4}.security-lock{margin-left:auto;color:#65728f;font-size:18px}.login-note{display:none}
+    .hero{isolation:isolate}.hero::before{content:"";position:absolute;z-index:-1;top:16%;left:50%;transform:translateX(-50%);width:min(76vw,820px);height:360px;background:radial-gradient(ellipse,#6366f11c,transparent 68%);pointer-events:none}.hero .badge{border-color:#8b9cfb3b;background:linear-gradient(90deg,#38bdf810,#a78bfa12);box-shadow:inset 0 1px #ffffff0c,0 8px 30px #0002;letter-spacing:.6px}.hero h1{filter:drop-shadow(0 0 45px #8b5cf729)}
+    .section-kicker{display:block;margin-bottom:12px;font-size:9px;font-weight:800;letter-spacing:2.5px;color:#8be9ff}.section-title h2{letter-spacing:-1.8px;font-size:clamp(30px,4vw,43px)}.section-title p{color:#9da4bd;font-size:13px}
+    .overview-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;margin:0 0 24px}.overview-card{position:relative;overflow:hidden;min-width:0;padding:22px 23px 19px;border:1px solid #ffffff14;border-radius:21px;background:linear-gradient(145deg,#151a2ad9,#0a0d17f2);box-shadow:0 18px 45px #0002;transition:transform .3s,border-color .3s,box-shadow .3s}.overview-card:hover{transform:translateY(-4px);border-color:#8b9cfb4a;box-shadow:0 22px 48px #0004}.overview-card::after{content:"";position:absolute;width:145px;height:145px;right:-65px;top:-80px;border-radius:50%;background:var(--card-glow,#38bdf8);opacity:.14;filter:blur(25px)}.overview-light{--card-glow:#facc15}.overview-climate{--card-glow:#a78bfa}.overview-network{--card-glow:#38bdf8}.overview-top{display:flex;align-items:center;gap:9px;margin-bottom:21px}.overview-icon{display:grid;place-items:center;width:37px;height:37px;border-radius:12px;background:#ffffff09;border:1px solid #ffffff13;color:#a5eaff;font-size:21px}.overview-label{font-size:9px;font-weight:800;letter-spacing:1.8px;color:#929bb5}.overview-pulse{margin-left:auto;width:6px;height:6px;border-radius:50%;background:#64748b;box-shadow:none;transition:background .25s,box-shadow .25s}.overview-pulse.active{background:#4ade80;box-shadow:0 0 10px #4ade80}.overview-mini{margin-left:auto;padding:5px 7px;border-radius:6px;background:#ffffff08;color:#858eaa;font-size:8px;letter-spacing:.7px}.overview-card>strong{display:block;font-size:clamp(19px,2.3vw,27px);letter-spacing:-.8px;color:#eef3ff}.overview-card>strong span{font-size:12px;font-weight:500;color:#8b95b0;letter-spacing:0}.overview-card>p{margin-top:6px;color:#828ca7;font-size:11px}.overview-track{height:4px;margin-top:20px;border-radius:10px;background:#ffffff0d;overflow:hidden}.overview-track span{display:block;height:100%;border-radius:10px;background:linear-gradient(90deg,#facc15,#fb923c);box-shadow:0 0 12px #facc1540}.overview-wave{display:flex;align-items:center;gap:4px;height:13px;margin-top:13px}.overview-wave i{display:block;width:5px;border-radius:5px;background:linear-gradient(#a78bfa,#6366f1);height:35%;animation:waveBar 1.1s ease-in-out infinite alternate}.overview-wave i:nth-child(3n){height:95%;animation-delay:-.5s}.overview-wave i:nth-child(2n){height:65%;animation-delay:-.8s}.overview-wave i:nth-child(4n){height:45%;animation-delay:-.2s}@keyframes waveBar{to{transform:scaleY(.35);opacity:.55}}.network-visual{display:flex;align-items:end;gap:4px;height:13px;margin-top:13px}.network-visual span{flex:1;height:var(--bar,45%);border-radius:3px 3px 1px 1px;background:linear-gradient(#67e8f9,#6366f1);opacity:.72}.network-visual span:nth-child(3n){--bar:90%}.network-visual span:nth-child(4n){--bar:70%}.network-visual span:nth-child(5n){--bar:35%}.network-visual span:nth-child(7n){--bar:100%}
+    .connection-box{border-radius:23px;background:linear-gradient(140deg,#141b2adf,#0b0e18f2);border-color:#ffffff1a}.connection-header h3{letter-spacing:-.4px}.connection-message{padding:12px 14px;border-radius:11px;background:#ffffff04;border:1px solid #ffffff09}.device{background:linear-gradient(145deg,#171c2de8,#0a0c15f5);border-color:#ffffff16}.device-icon{box-shadow:inset 0 1px #ffffff18,0 8px 24px #0002}.device h3{letter-spacing:-.6px}.power-off{box-shadow:0 18px 45px #0003,inset 0 1px #ffffff0b}.feature{background:linear-gradient(145deg,#151a2ad9,#0b0d17ed);border:1px solid #ffffff13;box-shadow:0 14px 35px #0002;transition:transform .3s,border-color .3s}.feature:hover{transform:translateY(-5px);border-color:#a78bfa55}
+    @media(max-width:900px){.login-layout{grid-template-columns:1fr;max-width:520px;min-height:0}.login-visual{min-height:310px;padding:28px 30px 18px;border-right:0;border-bottom:1px solid #ffffff12}.visual-copy{margin-top:28px}.visual-copy h2{font-size:39px;letter-spacing:-1.7px}.visual-copy p{font-size:12px;margin-top:10px;max-width:330px}.house-scene{position:absolute;right:-20px;bottom:-3px;width:48%;min-height:0;margin:0;opacity:.8}.house-svg{width:100%}.floating-chip,.visual-foot,.orbit-one,.orbit-two{display:none}.login-card{max-width:none;padding:30px}.login-brand{margin-bottom:27px}.overview-grid{gap:12px}.overview-card{padding:18px}}
+    @media(max-width:600px){.login-screen{padding:12px}.login-layout{border-radius:25px}.login-visual{min-height:260px;padding:23px 23px 14px}.visual-copy{margin-top:26px;max-width:70%}.visual-copy h2{font-size:32px}.visual-copy p{font-size:11px;line-height:1.55}.house-scene{width:48%;right:-14px;bottom:0}.login-card{padding:25px 23px 27px}.login-card h1{font-size:32px}.login-subtitle{font-size:12px;margin-bottom:24px}.login-security{margin-top:22px}.overview-grid{grid-template-columns:1fr;gap:10px}.overview-card{padding:18px 20px}.overview-top{margin-bottom:13px}.overview-track,.overview-wave,.network-visual{margin-top:10px}.section-title{margin-bottom:25px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
   </style>
 </head>
 <body>
-
-  <!-- BACKGROUND SKY -->
-  <div class="sky">
-    <div class="cloud cloud1"></div><div class="cloud cloud2"></div><div class="cloud cloud3"></div>
-    <div class="lightning bolt1"></div><div class="lightning bolt2"></div>
+  <div class="sky" aria-hidden="true">
+    <div class="cloud cloud1"></div><div class="cloud cloud2"></div><div class="cloud cloud3"></div><div class="cloud cloud4"></div><div class="cloud cloud5"></div>
+    <div class="lightning bolt1"></div><div class="lightning bolt2"></div><div class="lightning bolt3"></div>
   </div>
-  <div class="flash"></div>
+  <div class="flash"></div><div class="flash delay1"></div><div class="flash delay2"></div>
 
-  <!-- STUNNING SPLIT-SCREEN LOGIN -->
   <section class="login-screen" id="loginScreen">
     <div class="login-layout">
-      <div class="login-visual">
+      <div class="login-visual" aria-label="Smart home illustration">
         <div class="visual-orbit orbit-one"></div><div class="visual-orbit orbit-two"></div>
         <div class="visual-topline"><span class="visual-live-dot"></span> SMART LIVING / CONNECTED</div>
-        <div class="visual-copy">
-          <span class="visual-eyebrow">YOUR HOME, IN HARMONY</span>
-          <h2>Intelligence<br>meets <em>comfort.</em></h2>
-          <p>One secure space to manage your lights, climate and connected devices.</p>
-        </div>
+        <div class="visual-copy"><span class="visual-eyebrow">YOUR HOME, IN HARMONY</span><h2>Intelligence<br>meets <em>comfort.</em></h2><p>One secure space to manage your lights, climate and connected devices.</p></div>
         <div class="house-scene">
-          <svg viewBox="0 0 520 380" class="house-svg">
-            <defs>
-              <linearGradient id="houseWall" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#293e66"/><stop offset="1" stop-color="#10182e"/></linearGradient>
-              <linearGradient id="houseRoof" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8be9ff"/><stop offset="1" stop-color="#9b7bff"/></linearGradient>
-              <linearGradient id="windowGlow" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#a5f3fc"/><stop offset="1" stop-color="#5b8dff"/></linearGradient>
-            </defs>
+          <div class="scene-glow"></div>
+          <svg viewBox="0 0 520 380" role="img" aria-label="Illustration of a connected modern home" class="house-svg">
+            <defs><linearGradient id="houseWall" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#293e66"/><stop offset="1" stop-color="#10182e"/></linearGradient><linearGradient id="houseRoof" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8be9ff"/><stop offset="1" stop-color="#9b7bff"/></linearGradient><linearGradient id="windowGlow" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#a5f3fc"/><stop offset="1" stop-color="#5b8dff"/></linearGradient><filter id="softGlow"><feGaussianBlur stdDeviation="8"/></filter></defs>
+            <ellipse cx="264" cy="322" rx="178" ry="22" fill="#4f46e5" opacity=".2" filter="url(#softGlow)"/>
             <path d="M91 181 L254 66 L421 181 L421 300 L91 300 Z" fill="url(#houseWall)" stroke="#8be9ff" stroke-opacity=".6" stroke-width="1.5"/>
-            <path d="M67 183 L254 48 L445 183 L417 197 L254 83 L94 198 Z" fill="url(#houseRoof)"/>
-            <rect x="143" y="204" width="70" height="64" rx="5" fill="url(#windowGlow)" opacity=".9"/>
-            <rect x="293" y="204" width="70" height="64" rx="5" fill="url(#windowGlow)" opacity=".82"/>
-            <rect x="231" y="222" width="48" height="78" rx="5" fill="#0b1021" stroke="#8be9ff" stroke-opacity=".55"/>
+            <path d="M67 183 L254 48 L445 183 L417 197 L254 83 L94 198 Z" fill="url(#houseRoof)" opacity=".95"/>
+            <path d="M124 199 L254 111 L389 199" fill="none" stroke="#d9f7ff" stroke-opacity=".28" stroke-width="2"/>
+            <rect x="143" y="204" width="70" height="64" rx="5" fill="url(#windowGlow)" opacity=".9"/><path d="M178 204 V268 M143 236 H213" stroke="#142343" stroke-width="4"/>
+            <rect x="293" y="204" width="70" height="64" rx="5" fill="url(#windowGlow)" opacity=".82"/><path d="M328 204 V268 M293 236 H363" stroke="#142343" stroke-width="4"/>
+            <rect x="231" y="222" width="48" height="78" rx="5" fill="#0b1021" stroke="#8be9ff" stroke-opacity=".55"/><circle cx="266" cy="262" r="2.5" fill="#8be9ff"/>
+            <path d="M260 29 V7 M249 18 L260 7 L271 18" stroke="#8be9ff" stroke-width="2.5" stroke-linecap="round" fill="none"/><circle cx="260" cy="28" r="13" fill="#67e8f9" opacity=".15"/>
+            <path d="M260 36 C215 35 205 63 205 86 M260 36 C306 35 316 63 316 86" stroke="#67e8f9" stroke-width="1.5" stroke-dasharray="4 6" opacity=".8" fill="none"/>
+            <circle cx="205" cy="88" r="5" fill="#67e8f9"/><circle cx="316" cy="88" r="5" fill="#a78bfa"/>
+            <g transform="translate(65 118)"><rect width="66" height="48" rx="13" fill="#111b31" stroke="#8be9ff" stroke-opacity=".5"/><path d="M23 29 V20 A10 10 0 0 1 43 20 V29" stroke="#8be9ff" stroke-width="2" fill="none"/><rect x="20" y="27" width="26" height="13" rx="3" fill="#8be9ff"/><circle cx="33" cy="33" r="2" fill="#15223e"/></g>
+            <g transform="translate(385 122)"><rect width="66" height="48" rx="13" fill="#111b31" stroke="#a78bfa" stroke-opacity=".55"/><path d="M20 25 Q33 9 46 25 M25 29 Q33 20 41 29 M31 34 Q33 32 35 34" stroke="#c4b5fd" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="33" cy="38" r="2" fill="#c4b5fd"/></g>
           </svg>
-          <div class="floating-chip chip-temp"><span class="chip-icon">☼</span><span><b>Lighting</b><small>Smart ambience</small></span></div>
-          <div class="floating-chip chip-cloud"><span class="chip-icon">⌁</span><span><b>Cloud sync</b><small>Secure connection</small></span></div>
+          <div class="floating-chip chip-temp"><span class="chip-icon">☼</span><span><b>Lighting</b><small>Smart ambience</small></span><i></i></div>
+          <div class="floating-chip chip-cloud"><span class="chip-icon">⌁</span><span><b>Cloud sync</b><small>Secure connection</small></span><i></i></div>
         </div>
         <div class="visual-foot"><span>DESIGNED FOR EVERYDAY LIVING</span><span>01 — SMART HOME</span></div>
       </div>
-
       <div class="login-card">
         <div class="login-brand"><div class="login-mark">⌂</div><div><strong>SMART HOME</strong><span>SECURE CONTROL CENTER</span></div></div>
         <div class="login-welcome-tag"><span></span> PRIVATE ACCESS PORTAL</div>
-        <h1>Welcome back<span class="title-period">.</span></h1>
-        <p class="login-subtitle">Your home is one sign-in away. Enter your credentials to continue.</p>
+        <h1 id="loginTitle">Welcome back<span class="title-period">.</span></h1>
+        <p class="login-subtitle" id="loginSubtitle">Your home is one sign-in away. Enter your credentials to continue.</p>
         <form id="authForm">
-          <label class="login-label">Email address</label>
-          <div class="input-shell"><span class="input-symbol">✉</span><input class="login-input" id="authEmail" type="text" placeholder="Enter your email address" required></div>
-          <label class="login-label">Password</label>
-          <div class="input-shell"><span class="input-symbol">⌑</span><input class="login-input" id="authPassword" type="password" placeholder="Enter your password" required></div>
-          <button class="login-submit" type="submit"><span>Sign in securely</span><span>↗</span></button>
-          <div class="login-message" id="authMsg"></div>
+          <label class="login-label" for="authEmail">Email address</label>
+          <!-- Changed to type="text" so browser will not complain about two @ symbols! -->
+          <div class="input-shell"><span class="input-symbol">✉</span><input class="login-input" id="authEmail" type="text" placeholder="Enter Your email address" autocomplete="username" required></div>
+          <label class="login-label" for="authPassword">Password</label>
+          <div class="input-shell"><span class="input-symbol">⌑</span><input class="login-input" id="authPassword" type="password" placeholder="Enter your password" autocomplete="current-password" required><span class="password-hint">•••</span></div>
+          <button class="login-submit" id="authSubmit" type="submit"><span>Sign in securely</span><span class="submit-arrow">↗</span></button>
+          <div class="login-message" id="authMessage" role="status" aria-live="polite"></div>
         </form>
-        <div class="login-security"><span class="security-shield">✓</span><span><b>Protected access</b><small>Credentials are checked by the authentication service.</small></span></div>
+        <div class="login-security"><span class="security-shield">✓</span><span><b>Protected access</b><small>Credentials are checked by the authentication service.</small></span><span class="security-lock">⌑</span></div>
       </div>
     </div>
   </section>
 
-  <!-- APP SHELL -->
   <div id="appShell" hidden>
-    <nav>
-      <div class="logo">SMART HOME</div>
-      <button class="logout-btn" id="logoutBtn">Sign out</button>
-    </nav>
+  <nav>
+    <div class="logo">SMART HOME</div>
+    <div class="links"><a href="#home">Home</a><a href="#dashboard">Dashboard</a><a href="#features">Features</a> <button class="logout-btn" id="logoutBtn" type="button">Sign out</button></div>
+  </nav>
 
-    <section class="hero">
-      <div class="badge">⚡ LIVE CLIMATE • AUTO-COOLING (>40°C) • FIREBASE</div>
-      <h1>Control Your Home.<br>From Anywhere.</h1>
-      <p>ESP8266 is connected to your Wi-Fi router. Monitor live room climate and control your appliances through Firebase.</p>
-      <div class="system-status"><span id="systemDot" class="status-dot"></span><span id="systemStatus">Connecting to cloud…</span></div>
-    </section>
+  <section class="hero" id="home">
+    <div class="badge">⚡ ESP8266 • FIREBASE • ANY NETWORK</div>
+    <h1>Control Your Home.<br>From Anywhere.</h1>
+    <p>ESP8266 is connected to your Wi-Fi router. Open this dashboard from any network and control your lights and fans through Firebase.</p>
+    <div class="hero-buttons"><a href="#dashboard" class="hero-btn primary-btn">Open Dashboard</a><a href="#features" class="hero-btn secondary-btn">Explore Features</a></div>
+  </section>
 
-    <section class="dashboard">
-      <!-- 🔥 AUTO HEAT ALERT -->
-      <div id="heatAlert" class="heat-alert">
-        🚨 HEAT ALERT: Temperature > 40°C! Cooling Fan has automatically turned ON! ❄️
+  <div class="system-status"><span id="systemDot" class="status-dot"></span><span id="systemStatus">Connecting to cloud…</span></div>
+
+  <section class="dashboard" id="dashboard">
+    <div class="section-title"><span class="section-kicker">YOUR SPACE AT A GLANCE</span><h2>Home Dashboard</h2><p>Thoughtful control for every connected corner of your home.</p></div>
+    <div class="overview-grid" aria-label="Smart home overview">
+      <div class="overview-card overview-light"><div class="overview-top"><span class="overview-icon">☼</span><span class="overview-label">LIGHTING</span><span id="lightingPulse" class="overview-pulse" aria-label="Lighting off"></span></div><strong><span id="lightingCount" style="font-size:inherit;font-weight:inherit;color:inherit">00</span><span> / 02</span></strong><p>Active light channels</p><div class="overview-track"><span id="lightingTrack" style="width:0%"></span></div></div>
+      <div class="overview-card overview-climate"><div class="overview-top"><span class="overview-icon">✳</span><span class="overview-label">CLIMATE</span><span class="overview-mini">FAN</span></div><strong>Comfort<span> mode</span></strong><p>Room ventilation control</p><div class="overview-wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+      <div class="overview-card overview-network"><div class="overview-top"><span class="overview-icon">⌁</span><span class="overview-label">NETWORK</span><span class="overview-mini">LIVE STATUS</span></div><strong>Cloud<span> link</span></strong><p>Firebase connection monitor</p><div class="network-visual"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
+    </div>
+    <div class="connection-box">
+      <div class="connection-header"><h3>Cloud Connection</h3><span id="cloudStatusText">Connecting…</span></div>
+      <div class="connection-label">Status</div><div id="connectionMessage" class="connection-message">Waiting for Firebase + ESP8266…</div>
+      <div class="ip-section">
+        <div class="connection-header"><h3 style="font-size:18px">ESP8266 Local IP (Wi-Fi Router)</h3><span id="currentIP">IP: Not Set</span></div>
+        <div class="connection-label">Enter the IP shown in ESP8266 Serial Monitor</div>
+        <div class="ip-row"><input type="text" id="espIP" placeholder="Example: 192.168.1.25" inputmode="decimal" autocomplete="off"><button class="ip-btn save-btn" id="saveIpBtn" type="button">SAVE IP</button></div>
       </div>
+    </div>
 
-      <!-- OVERVIEW BAR WITH LIVE CLIMATE -->
-      <div class="overview-grid">
-        <!-- 1. LIGHTING -->
-        <div class="overview-card">
-          <div class="overview-top"><span class="overview-icon">💡</span><span class="overview-label">LIGHTING</span><span class="overview-mini">2 CHANNELS</span></div>
-          <strong><span id="lightingCount">00</span><span> / 02</span></strong>
-          <p>Active room lights</p>
-          <div class="overview-wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        </div>
-
-        <!-- 2. CLIMATE (LIVE TEMPERATURE & HUMIDITY) -->
-        <div class="overview-card" style="border-color:#38bdf833">
-          <div class="overview-top"><span class="overview-icon">🌡️</span><span class="overview-label">CLIMATE</span><span id="climateBadge" class="overview-mini">COMFORT</span></div>
-          <strong><span id="climateTemp">--.-</span><span>°C</span> • <span id="climateHum">--</span><span>%</span></strong>
-          <p id="climateStatusText">Live Room Temp & Humidity</p>
-          <div class="overview-wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        </div>
-
-        <!-- 3. NETWORK -->
-        <div class="overview-card">
-          <div class="overview-top"><span class="overview-icon">⌁</span><span class="overview-label">NETWORK</span><span class="overview-mini">LIVE</span></div>
-          <strong id="cloudStatusText">Connecting…</strong>
-          <p id="connectionMessage">Firebase Realtime Sync</p>
-          <div class="network-visual"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-        </div>
+    <div class="device-grid">
+      <div class="power-off">
+        <div class="power-icon">⏻</div><h2>Total Power</h2><button class="total-off" id="powerOffBtn" type="button">POWER OFF</button>
+        <p>System: <span id="systemState">—</span></p>
       </div>
-
-      <!-- APPLIANCE CONTROLS -->
-      <div class="device-grid">
-        <div class="power-off">
-          <h2>Total Power</h2>
-          <button class="total-off" id="powerOffBtn">POWER OFF ALL</button>
-        </div>
-        <div class="device">
-          <div class="device-top"><div class="device-icon">💡</div><div class="device-status" id="status1">OFF</div></div>
-          <h3>Light</h3><p style="color:#a2a4bb;font-size:13px">Main room lighting</p>
-          <div class="controls"><button class="control-btn on-btn" data-relay="1" data-state="on">ON</button><button class="control-btn off-btn" data-relay="1" data-state="off">OFF</button></div>
-        </div>
-        <div class="device">
-          <div class="device-top"><div class="device-icon">💡</div><div class="device-status" id="status2">OFF</div></div>
-          <h3>Bulb</h3><p style="color:#a2a4bb;font-size:13px">Smart bedside bulb</p>
-          <div class="controls"><button class="control-btn on-btn" data-relay="2" data-state="on">ON</button><button class="control-btn off-btn" data-relay="2" data-state="off">OFF</button></div>
-        </div>
-        <div class="device">
-          <div class="device-top"><div class="device-icon">🌀</div><div class="device-status" id="status3">OFF</div></div>
-          <h3>Fan</h3><p style="color:#a2a4bb;font-size:13px">Room ventilation fan</p>
-          <div class="controls"><button class="control-btn on-btn" data-relay="3" data-state="on">ON</button><button class="control-btn off-btn" data-relay="3" data-state="off">OFF</button></div>
-        </div>
-        <div class="device">
-          <div class="device-top"><div class="device-icon">❄️</div><div class="device-status" id="status4">OFF</div></div>
-          <h3>Cooling Fan</h3><p style="color:#a2a4bb;font-size:13px">Auto-starts if Temp > 40°C</p>
-          <div class="controls"><button class="control-btn on-btn" data-relay="4" data-state="on">ON</button><button class="control-btn off-btn" data-relay="4" data-state="off">OFF</button></div>
-        </div>
+      <div class="device">
+        <div class="device-top"><div class="device-icon">💡</div><div class="device-status" id="status1">OFF</div></div>
+        <h3>Light</h3><p class="device-description">Main room lighting</p>
+        <div class="controls"><button class="control-btn on-btn" data-relay="1" data-state="on" type="button">ON</button><button class="control-btn off-btn" data-relay="1" data-state="off" type="button">OFF</button></div>
       </div>
-    </section>
+      <div class="device">
+        <div class="device-top"><div class="device-icon">💡</div><div class="device-status" id="status2">OFF</div></div>
+        <h3>Bulb</h3><p class="device-description">Smart bulb control</p>
+        <div class="controls"><button class="control-btn on-btn" data-relay="2" data-state="on" type="button">ON</button><button class="control-btn off-btn" data-relay="2" data-state="off" type="button">OFF</button></div>
+      </div>
+      <div class="device">
+        <div class="device-top"><div class="device-icon">🌀</div><div class="device-status" id="status3">OFF</div></div>
+        <h3>Fan</h3><p class="device-description">Room ventilation control</p>
+        <div class="controls"><button class="control-btn on-btn" data-relay="3" data-state="on" type="button">ON</button><button class="control-btn off-btn" data-relay="3" data-state="off" type="button">OFF</button></div>
+      </div>
+      <div class="device">
+        <div class="device-top"><div class="device-icon">🌀</div><div class="device-status" id="status4">OFF</div></div>
+        <h3>Cooling Fan</h3><p class="device-description">Cooling fan control</p>
+        <div class="controls"><button class="control-btn on-btn" data-relay="4" data-state="on" type="button">ON</button><button class="control-btn off-btn" data-relay="4" data-state="off" type="button">OFF</button></div>
+      </div>
+    </div>
+
+    <div class="features" id="features">
+      <div class="feature"><div class="feature-icon">📱</div><h3>Any Network</h3><p>Open the page from mobile data or another Wi-Fi network and send commands through the cloud.</p></div>
+      <div class="feature"><div class="feature-icon">📡</div><h3>ESP8266 + Cloud</h3><p>Firebase bridges the web dashboard and your ESP8266 when both are correctly configured.</p></div>
+      <div class="feature"><div class="feature-icon">⚡</div><h3>Relay Switching</h3><p>Use properly rated relay modules and safe electrical isolation when controlling appliances.</p></div>
+    </div>
+  </section>
+
+  <footer><strong>SMART HOME AUTOMATION</strong><br><br>ESP8266 on Wi-Fi Router • Firebase Cloud • Works from Any Network<br><br>© 2026 Smart Home Project</footer>
+
   </div>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
     import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
 
+    // Your actual configuration from Firebase Console
     const firebaseConfig = {
       apiKey: "AIzaSyBA_vMXVHsE-qB51D8osrv0piMnGGFo_cI",
       authDomain: "home-automation-faba1.firebaseapp.com",
@@ -277,123 +347,153 @@
       projectId: "home-automation-faba1",
       storageBucket: "home-automation-faba1.firebasestorage.app",
       messagingSenderId: "437642507764",
-      appId: "1:437642507764:web:50eee770182cf512bab5a1"
+      appId: "1:437642507764:web:50eee770182cf512bab5a1",
+      measurementId: "G-CQLMQMK2LB"
     };
 
     const byId = id => document.getElementById(id);
-    const ALLOWED_EMAIL = "home@utomation@gmail.com";
-    const ALLOWED_PASS = "@utomation";
-
+    const ALLOWED_LOGIN_EMAIL = "home@utomation@gmail.com";
+    const DEMO_LOGIN_PASSWORD = "@utomation";
     let db = null, homeRef = null, stopListening = null;
+    let ESP8266_IP = localStorage.getItem("ESP8266_IP") || "";
 
-    function setStatus(num, isOn, isAuto = false) {
-      const el = byId("status" + num);
-      if (isAuto && isOn) {
-        el.textContent = "AUTO ON";
-        el.className = "device-status auto";
-      } else {
-        el.textContent = isOn ? "ON" : "OFF";
-        el.className = "device-status" + (isOn ? " on" : "");
-      }
+    if (ESP8266_IP) {
+      byId("espIP").value = ESP8266_IP;
+      byId("currentIP").textContent = "IP: " + ESP8266_IP;
     }
 
+    function setAuthMessage(message, success = false) {
+      const el = byId("authMessage");
+      el.textContent = message;
+      el.classList.toggle("ok", success);
+    }
+    function showMessage(message) { byId("connectionMessage").textContent = message; }
+    function setSystemOnline() {
+      byId("systemDot").classList.remove("offline");
+      byId("systemDot").classList.add("online");
+      byId("systemStatus").textContent = "ESP8266 System Online (Cloud)";
+    }
+    function setSystemOffline(message = "ESP8266 System Offline") {
+      byId("systemDot").classList.remove("online");
+      byId("systemDot").classList.add("offline");
+      byId("systemStatus").textContent = message;
+    }
+    function setStatus(num, isOn) {
+      const el = byId("status" + num);
+      el.textContent = isOn ? "ON" : "OFF";
+      el.classList.toggle("on", isOn);
+    }
+    function stopDatabaseListener() {
+      if (typeof stopListening === "function") stopListening();
+      stopListening = null;
+    }
     function startDatabaseListener() {
-      if (stopListening) stopListening();
-      byId("cloudStatusText").textContent = "CONNECTED";
-      byId("connectionMessage").textContent = "Live sync with Firebase.";
-
+      stopDatabaseListener();
+      byId("cloudStatusText").textContent = "Checking connection…";
+      showMessage("Signed in. Connecting to Firebase database…");
       stopListening = onValue(homeRef, snapshot => {
-        byId("cloudStatusText").textContent = "CONNECTED";
-        const data = snapshot.val() || {};
-
-        const isAuto = !!data.autoCoolingActive;
-
-        // Update Relays
-        setStatus(1, !!data.relay1);
-        setStatus(2, !!data.relay2);
-        setStatus(3, !!data.relay3);
-        setStatus(4, !!data.relay4, isAuto);
-
-        // Active Lights Count
-        const activeLights = Number(!!data.relay1) + Number(!!data.relay2);
-        byId("lightingCount").textContent = String(activeLights).padStart(2, "0");
-
-        // 🌡️ LIVE CLIMATE CARD (Temp & Hum inside Climate card!)
-        if (data.temperature !== undefined) {
-          const t = Number(data.temperature);
-          byId("climateTemp").textContent = t.toFixed(1);
-
-          if (t > 40.0) {
-            byId("climateBadge").textContent = "HEAT ALERT";
-            byId("climateBadge").className = "overview-mini alert";
-            byId("climateStatusText").textContent = "🔥 >40°C! Auto-Cooling Active";
-            byId("heatAlert").style.display = "block";
-          } else {
-            byId("climateBadge").textContent = "COMFORT";
-            byId("climateBadge").className = "overview-mini";
-            byId("climateStatusText").textContent = "Live Room Temp & Humidity";
-            byId("heatAlert").style.display = "none";
-          }
+        const data = snapshot.val();
+        byId("cloudStatusText").textContent = "DATABASE CONNECTED";
+        if (!data) {
+          setSystemOffline("ESP8266 Status Unknown");
+          byId("systemState").textContent = "—";
+          showMessage("Firebase database connected. Waiting for ESP8266...");
+          return;
         }
-
-        if (data.humidity !== undefined) {
-          byId("climateHum").textContent = Math.round(Number(data.humidity));
-        }
-
-        // ESP8266 Online Status
+        const states = [!!data.relay1, !!data.relay2, !!data.relay3, !!data.relay4];
+        states.forEach((state, index) => setStatus(index + 1, state));
+        const activeLightChannels = Number(states[0]) + Number(states[1]);
+        byId("lightingCount").textContent = String(activeLightChannels).padStart(2, "0");
+        byId("lightingTrack").style.width = `${activeLightChannels * 50}%`;
+        byId("lightingPulse").classList.toggle("active", activeLightChannels > 0);
+        byId("lightingPulse").setAttribute("aria-label", activeLightChannels > 0 ? "Lighting on" : "Lighting off");
+        const activeCount = states.filter(Boolean).length;
+        byId("systemState").textContent = activeCount === 0 ? "ALL OFF" : `${activeCount} DEVICE${activeCount > 1 ? "S" : ""} ON`;
+        byId("systemState").style.color = activeCount ? "#22c55e" : "#ef4444";
         if (data.espOnline === true) {
-          byId("systemDot").className = "status-dot online";
-          byId("systemStatus").textContent = "ESP8266 Online (Weather & Relays Live)";
+          setSystemOnline();
+          showMessage("ESP8266 ONLINE • Live control ready from any network.");
         } else {
-          byId("systemDot").className = "status-dot offline";
-          byId("systemStatus").textContent = "ESP8266 Offline";
+          setSystemOffline();
+          showMessage("Firebase database connected! ESP8266 is currently offline.");
         }
-      }, err => {
-        console.error(err);
-        byId("cloudStatusText").textContent = "ERROR";
-        byId("connectionMessage").textContent = "Check Firebase Rules!";
+      }, error => {
+        console.error(error);
+        byId("cloudStatusText").textContent = "DATABASE ERROR";
+        setSystemOffline("Database Connection Failed");
+        showMessage("Cannot read Firebase database. Check Realtime Database rules.");
       });
     }
 
-    async function controlRelay(num, state) {
-      if (db) await set(ref(db, `home/relay${num}`), state);
+    function saveIP() {
+      const ip = byId("espIP").value.trim();
+      const ipPattern = /^(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}$/;
+      if (!ip) { showMessage("Please enter the ESP8266 IP address."); return; }
+      if (!ipPattern.test(ip)) { showMessage("Invalid IP address. Example: 192.168.1.25"); return; }
+      ESP8266_IP = ip;
+      localStorage.setItem("ESP8266_IP", ip);
+      byId("currentIP").textContent = "IP: " + ip;
+      showMessage("Local IP saved.");
     }
-
-    document.querySelectorAll("[data-relay]").forEach(btn => 
-      btn.addEventListener("click", () => controlRelay(Number(btn.dataset.relay), btn.dataset.state === "on"))
-    );
-
-    byId("powerOffBtn").addEventListener("click", async () => {
-      if (db && confirm("Turn OFF all appliances?")) {
-        await set(homeRef, { relay1: false, relay2: false, relay3: false, relay4: false, autoCoolingActive: false });
+    async function controlRelay(num, state) {
+      if (!db) { showMessage("Firebase database is not initialized."); return; }
+      try {
+        await set(ref(db, `home/relay${num}`), state);
+        showMessage(`Relay ${num} command sent: ${state ? "ON" : "OFF"}`);
+      } catch (error) {
+        console.error(error);
+        showMessage("Command failed. Check Firebase Database rules.");
       }
-    });
-
-    byId("authForm").addEventListener("submit", e => {
-      e.preventDefault();
-      const email = byId("authEmail").value.trim().toLowerCase();
-      const pass = byId("authPassword").value;
-      if (email === ALLOWED_EMAIL && pass === ALLOWED_PASS) {
-        byId("loginScreen").hidden = true;
-        byId("appShell").hidden = false;
-        startDatabaseListener();
-      } else {
-        byId("authMsg").textContent = "Incorrect email or password!";
+    }
+    async function totalPowerOff() {
+      if (!db) { showMessage("Firebase database is not initialized."); return; }
+      if (!window.confirm("Turn OFF all appliances?")) return;
+      try {
+        await set(homeRef, { relay1: false, relay2: false, relay3: false, relay4: false });
+        showMessage("OFF commands sent to all appliances.");
+      } catch (error) {
+        console.error(error);
+        showMessage("Power-off failed. Check Firebase Database rules.");
       }
-    });
-
+    }
+    byId("saveIpBtn").addEventListener("click", saveIP);
+    byId("powerOffBtn").addEventListener("click", totalPowerOff);
+    document.querySelectorAll("[data-relay]").forEach(button => button.addEventListener("click", () => controlRelay(Number(button.dataset.relay), button.dataset.state === "on")));
     byId("logoutBtn").addEventListener("click", () => {
-      if (stopListening) stopListening();
+      stopDatabaseListener();
       byId("appShell").hidden = true;
       byId("loginScreen").hidden = false;
+      byId("authPassword").value = "";
+      setAuthMessage("You have been signed out.");
+    });
+
+    byId("authForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const email = byId("authEmail").value.trim().toLowerCase();
+      const password = byId("authPassword").value;
+
+      // Checks your exact custom login:
+      if (email === ALLOWED_LOGIN_EMAIL && password === DEMO_LOGIN_PASSWORD) {
+        setAuthMessage("Welcome! Unlocking...", true);
+        setTimeout(() => {
+          byId("loginScreen").hidden = true;
+          byId("appShell").hidden = false;
+          startDatabaseListener();
+        }, 300);
+      } else {
+        setAuthMessage("Incorrect email or password! Please check your credentials.");
+      }
     });
 
     try {
       const app = initializeApp(firebaseConfig);
       db = getDatabase(app);
       homeRef = ref(db, "home");
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error(error);
+      byId("cloudStatusText").textContent = "CONFIGURATION ERROR";
+      setSystemOffline("Firebase Configuration Error");
+      setAuthMessage("Firebase initialization failed. Check your internet connection.");
     }
   </script>
 </body>
